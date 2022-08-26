@@ -1,0 +1,19 @@
+{
+  "diagnostic.errorSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.hintSign": "",
+  "suggest.noselect": false,
+  "eslint.autoFixOnSave": true,
+  "typescript.referencesCodeLens.enable": false,
+  "javascript.referencesCodeLens.enable": false,
+  "codeLens.enable": true,
+  "snippets.extends": {
+    "javascriptreact": [
+      "javascript"
+    ],
+    "typescript": [
+      "javascript"
+    ]
+  }
+}
