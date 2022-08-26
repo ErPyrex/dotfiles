@@ -1,4 +1,4 @@
-source ~/zsh-snap/znap.zsh
+source ~/zsh-snap/zsh-snap/znap.zsh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -114,9 +114,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias cat="batcat"
-alias updatesys="sudo apt-get update && sudo apt-get upgrade"
+alias cat="bat"
 alias ls="lsd"
+alias neofetch="neofetch --ascii /home/pyrex64/.doom-ascii-art.txt"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
