@@ -1,0 +1,3 @@
+const fullname = 'hola'
+
+fullname = ''

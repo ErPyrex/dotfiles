@@ -11,6 +11,7 @@ treesitter.setup({
     -- 'astro',
     'tsx',
     'javascript',
+    'typescript',
     'json',
     'html',
     'css'

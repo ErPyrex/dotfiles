@@ -4,16 +4,16 @@
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
   "suggest.noselect": false,
-  "eslint.autoFixOnSave": true,
+  // "eslint.autoFixOnSave": true,
   "typescript.referencesCodeLens.enable": false,
   "javascript.referencesCodeLens.enable": false,
-  "codeLens.enable": true,
-  "snippets.extends": {
-    "javascriptreact": [
-      "javascript"
-    ],
-    "typescript": [
-      "javascript"
-    ]
-  }
+  "codeLens.enable": false,
+  // "snippets.extends": {
+  //   "javascriptreact": [
+  //     "javascript"
+  //   ],
+  //   "typescript": [
+  //     "javascript"
+  //   ]
+  // }
 }

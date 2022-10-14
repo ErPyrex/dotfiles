@@ -24,18 +24,20 @@ set numberwidth=1
 set shortmess+=c
 
 " set rnu
+" set clipboard=unnamedplus
 set clipboard=unnamedplus
 
 set signcolumn=yes
 
 set cmdheight=1
+set completeopt=menu,menuone,noselect
 
 call plug#begin('~/.vim/plugged')
 	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'TimUntersberger/neogit'
 	Plug 'nvim-telescope/telescope.nvim'
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'nvim-lualine/lualine.nvim'
 	Plug 'christoomey/vim-tmux-navigator'
 
@@ -53,7 +55,21 @@ call plug#begin('~/.vim/plugged')
 	Plug 'AndrewRadev/tagalong.vim'
 	Plug 'lewis6991/gitsigns.nvim'
 
+	" Temas
+	Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 	" Plug 'dracula/vim', { 'as': 'dracula' }
+	" Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+	
+	" LSP
+	Plug 'neovim/nvim-lspconfig'
+	Plug 'hrsh7th/nvim-cmp'
+	Plug 'hrsh7th/cmp-nvim-lsp'
+	Plug 'williamboman/nvim-lsp-installer'
+
+
+	" Snippets
+	Plug 'L3MON4D3/LuaSnip'
+	Plug 'saadparwaiz1/cmp_luasnip'
 call plug#end()
 
 let mapleader = " "
@@ -73,16 +89,16 @@ nnoremap <C-a> ggVG
 
 map <leader><Tab> :NvimTreeToggle<cr>
 
-packadd! doki-theme
-colorscheme ryuko_dark
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" packadd! doki-theme
+" colorscheme ryuko_dark
+" colorscheme dracula
 
 imap <expr><tab> emmet#expandAbbrIntelligent("\<tab>")
+
+" Ir a el buffer anterior o siguiente
+nnoremap <Tab> :bnext<cr>
+nnoremap <S-Tab> :bprevious<cr>
+
+" Mover linea seleccionada hacia arriba o hacia abajo
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
