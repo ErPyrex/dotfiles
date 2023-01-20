@@ -1,4 +1,4 @@
-source ~/zsh-snap/zsh-snap/znap.zsh
+source ~/zsh-snap/znap.zsh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -116,19 +116,10 @@ source $ZSH/oh-my-zsh.sh
 
 alias cat="bat"
 alias ls="lsd"
-alias neofetch="neofetch --ascii /home/pyrex64/.doom-ascii-art.txt"
+alias neofetch="neofetch --ascii /home/pyrex64/.gura-ascii-art.txt"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Znap Plugins
 znap source marlonrichert/zsh-autocomplete
