@@ -1,16 +1,25 @@
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
-local is_bootstrap = false
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+    vim.cmd([[packadd packer.nvim]])
+    return true
+  end
 
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  is_bootstrap = true
-  vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-  vim.cmd([[packadd packer.nvim]])
+  return false
 end
+
+local is_bootstrap = ensure_packer()
 
 require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
   use("folke/tokyonight.nvim")
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  })
   use({
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
@@ -18,16 +27,21 @@ require("packer").startup(function(use)
       "nvim-lua/plenary.nvim",
     },
   })
+  use("nvim-telescope/telescope-file-browser.nvim")
   use({
     "nvim-telescope/telescope-fzf-native.nvim",
     run = "make",
     cond = vim.fn.executable("make") == 1,
   })
+  use({ "nvim-telescope/telescope-ui-select.nvim" })
   use({
-    "nvim-treesitter/nvim-treesitter",
-    run = function()
-      pcall(require("nvim-treesitter.install").update({ with_sync = true }))
-    end,
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
   })
   use({
     "neovim/nvim-lspconfig",
@@ -86,7 +100,6 @@ require("packer").startup(function(use)
       require("nvim-surround").setup()
     end,
   })
-
   use("folke/neodev.nvim")
   use("jose-elias-alvarez/null-ls.nvim")
   use("onsails/lspkind.nvim")
@@ -99,25 +112,15 @@ require("packer").startup(function(use)
 
   use("folke/neodev.nvim")
   use("seandewar/bad-apple.nvim")
+  use("j-hui/fidget.nvim")
+  -- use("j-hui/fidget.nvim")
+  use("laytan/cloak.nvim")
+  use("echasnovski/mini.indentscope")
+  use("echasnovski/mini.splitjoin")
 
   if is_bootstrap then
     require("packer").sync()
   end
 end)
-
-local sign_icons = {
-  DiagnosticSignError = "",
-  DiagnosticSignWarn = "",
-  DiagnosticSignHint = "",
-  DiagnosticSignInfo = "",
-}
-
-for name, text in pairs(sign_icons) do
-  vim.fn.sign_define(name, {
-    texthl = name,
-    text = text,
-    numhl = "",
-  })
-end
 
 require("greg")

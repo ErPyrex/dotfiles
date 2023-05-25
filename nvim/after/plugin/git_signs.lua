@@ -4,7 +4,7 @@ if not ok then
   return
 end
 
-local on_attach = function()
+local on_attach = function(bufnr)
   local gs = package.loaded.gitsigns
 
   local function map(mode, l, r, opts)
@@ -13,7 +13,6 @@ local on_attach = function()
     vim.keymap.set(mode, l, r, opts)
   end
 
-  -- Navigation
   map("n", "]c", function()
     if vim.wo.diff then
       return "]c"
@@ -34,7 +33,6 @@ local on_attach = function()
     return "<Ignore>"
   end, { expr = true })
 
-  -- Actions
   map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>")
   map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>")
   map("n", "<leader>hS", gs.stage_buffer)
@@ -51,7 +49,6 @@ local on_attach = function()
   end)
   map("n", "<leader>td", gs.toggle_deleted)
 
-  -- Text object
   map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 end
 

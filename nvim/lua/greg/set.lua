@@ -2,7 +2,11 @@ vim.wo.number = true
 vim.o.mouse = "a"
 vim.o.ondofile = true
 vim.o.ignorecase = true
+
 vim.o.updatetime = 250
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+
 vim.wo.signcolumn = "yes"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -28,3 +32,5 @@ vim.opt.cursorline = true
 
 vim.o.scrolloff = 8
 vim.opt.completeopt = "menu,menuone,noselect"
+
+vim.o.undofile = true

@@ -1,7 +1,7 @@
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
-    "cpp",
-    "go",
+    -- "cpp",
+    -- "go",
     "lua",
     "typescript",
     "vim",
@@ -9,6 +9,8 @@ require("nvim-treesitter.configs").setup({
     "javascript",
     "html",
     "css",
+    "prisma",
+    "astro",
   },
   highlight = {
     enable = true,
