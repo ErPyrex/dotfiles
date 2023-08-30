@@ -1,0 +1,16 @@
+@import "tailwind-colors.rasi"
+
+* {
+  sizes-border-selected: 3px;
+
+  colors-background: rgba(15, 23, 42, 0.98);
+  colors-placeholder: @colors-slate-400;
+  colors-border: @colors-slate-800;
+  colors-element: @colors-slate-300;
+  colors-element-selected-text: @colors-slate-50;
+  colors-element-selected: @colors-slate-800;
+  colors-border-selected: @colors-blue-600;
+  colors-text: @colors-slate-200;
+}
+
+@import "selection-with-border-common.rasi"
