@@ -37,10 +37,20 @@ local lsp_kind = {
   Variable = "",
 }
 
-local function cmp_format()
+---@class CmpFormatOptions
+---@field maxWidth number
+
+---@param opts CmpFormatOptions
+local function cmp_format(opts)
   return function(_, item)
     if lsp_kind[item.kind] then
       item.kind = lsp_kind[item.kind]
+    end
+
+    item.menu = ""
+
+    if #item.abbr > opts.maxWidth then
+      item.abbr = item.abbr:sub(1, opts.maxWidth) .. "…"
     end
 
     return item
@@ -48,6 +58,7 @@ local function cmp_format()
 end
 
 local servers = {
+  -- volar = {},
   -- astro = {},
   bashls = {},
   cssls = {},
@@ -58,60 +69,61 @@ local servers = {
       "typescriptreact",
     },
   },
+  -- intelephense = {},
   html = {},
   lua_ls = {},
-  prismals = {},
+  -- prismals = {},
   pyright = {},
   tailwindcss = {},
   tsserver = {},
-  rust_analyzer = {
-    cmd = { "rustup", "run", "stable", "rust-analyzer" },
-  },
+  stylua = {},
+  eslint_d = {},
+
+  gopls = {},
+  goimports = {},
+  gofumpt = {},
 }
 
 return {
   {
-    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     dependencies = {
-      "neovim/nvim-lspconfig",
       {
         "williamboman/mason.nvim",
         opts = {},
       },
-    },
-    opts = {
-      ensure_installed = vim.tbl_keys(servers),
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
       "williamboman/mason-lspconfig.nvim",
-      "folke/neodev.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      {
+        "folke/neodev.nvim",
+        opts = {},
+      },
+    },
+    keys = {
+      { "<space>e", vim.diagnostic.open_float },
+      { "<space>[d", vim.diagnostic.goto_prev },
+      { "<space>]d", vim.diagnostic.goto_next },
+      { "<space>q", vim.diagnostic.setloclist },
     },
     config = function()
-      require("neodev").setup()
-
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
-      vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-      vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-      vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+      require("mason-tool-installer").setup({
+        ensure_installed = vim.tbl_keys(servers),
+      })
 
-      local lsp_flags = {
-        debounce_text_change = 150,
-      }
+      require("mason-lspconfig").setup({
+        handlers = {
+          function(server_name)
+            local server = servers[server_name] or {}
 
-      for server_name, settings in pairs(servers) do
-        lspconfig[server_name].setup({
-          flags = lsp_flags,
-          capabilities = capabilities,
-          settings = settings,
-          filetypes = (settings or {}).filetypes,
-        })
-      end
+            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+
+            lspconfig[server_name].setup(server)
+          end,
+        },
+      })
     end,
   },
   {
@@ -121,16 +133,22 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-path",
+      -- "rafamadriz/friendly-snippets",
     },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
       luasnip.config.setup({})
+      -- require("luasnip.loaders.from_vscode").lazy_load()
 
+      ---@diagnostic disable: missing-fields
       cmp.setup({
         formatting = {
-          format = cmp_format(),
+          format = cmp_format({
+            maxWidth = 20,
+          }),
         },
         snippet = {
           expand = function(args)
@@ -170,12 +188,12 @@ return {
             end
           end),
         }),
-        sources = cmp.config.sources({
+        sources = {
           { name = "nvim_lsp" },
           { name = "luasnip" },
-        }, {
-          { name = "buffer" },
-        }),
+          { name = "path" },
+          { name = "crates" },
+        },
       })
     end,
   },

@@ -1,11 +1,15 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.o.hlsearch = false
+vim.opt.hlsearch = true
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Make line numbers default
 vim.wo.number = true
 vim.o.relativenumber = true
+
+vim.o.splitbelow = true -- Put new windows below current
+vim.o.splitright = true -- Put new windows right of current
 
 vim.wo.wrap = false
 
@@ -46,4 +50,4 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true

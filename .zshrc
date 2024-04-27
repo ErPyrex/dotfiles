@@ -18,6 +18,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL10K_MODE="nerdfont-complete"
 
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -79,11 +80,12 @@ POWERLEVEL10K_MODE="nerdfont-complete"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-  sudo
+git
+zsh-syntax-highlighting
+zsh-autosuggestions
+sudo
 )
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,14 +114,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls='lsd'
-alias l='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
-alias lt='ls --tree'
-alias cat='/bin/bat'
-alias catn='/bin/cat'
-alias catnl='bat --paging=never'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -128,4 +122,18 @@ alias catnl='bat --paging=never'
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Path
+export PATH=$PATH:/usr/local/go/bin
+source "$HOME/.cargo/env"
+
+alias mciplan="ngrok tcp --region sa 25565"
+alias pn="pnpm"
+alias changejava="sudo update-alternatives --config java"
+alias upkitty="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
+# bun completions
+[ -s "/home/pyrex64/.bun/_bun" ] && source "/home/pyrex64/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

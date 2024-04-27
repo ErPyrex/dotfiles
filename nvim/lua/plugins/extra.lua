@@ -67,4 +67,44 @@ return {
       },
     },
   },
+  {
+    "tpope/vim-sleuth",
+  },
+  {
+    "bennypowers/splitjoin.nvim",
+    lazy = true,
+    keys = {
+      {
+        "gj",
+        function()
+          require("splitjoin").join()
+        end,
+        desc = "Join the object under cursor",
+      },
+      {
+        "g,",
+        function()
+          require("splitjoin").split()
+        end,
+        desc = "Split the object under cursor",
+      },
+    },
+  },
+  {
+    "RRethy/vim-illuminate",
+    enabled = false,
+    config = function()
+      require("illuminate").configure({
+        filetypes_denylist = {
+          "DressingInput",
+          "TelescopePrompt",
+          "fugitive",
+          "gitcommit",
+          "lazy",
+          "mason",
+          "neo-tree-popup",
+        },
+      })
+    end,
+  },
 }

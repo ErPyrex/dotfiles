@@ -18,9 +18,18 @@ return {
       options = {
         -- theme = "tokyonight",
         icons_enabled = false,
-        component_separators = "│",
+        -- component_separators = "│",
+        component_separators = "",
         section_separators = "",
-        globalstatus = true
+        globalstatus = true,
+      },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "branch", "diagnostics" },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = { "filename" },
+        lualine_z = { "location" },
       },
     },
   },

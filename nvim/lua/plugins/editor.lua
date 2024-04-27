@@ -50,15 +50,33 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     opts = {
-      char = "┊",
-      show_trailing_blankline_indent = false,
+      indent = {
+        char = "┊",
+      },
+      whitespace = {
+        remove_blankline_trail = false,
+      },
+      scope = {
+        enabled = false,
+      },
+      -- char = "┊",
+      -- show_trailing_blankline_indent = false,
     },
   },
   {
     "echasnovski/mini.indentscope",
     opts = {
       symbol = "┊",
+    },
+  },
+  {
+    "stevearc/dressing.nvim",
+    opts = {
+      win_options = {
+        winblend = 0,
+      },
     },
   },
 }
