@@ -1,23 +1,14 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
-POWERLEVEL10K_MODE="nerdfont-complete"
-
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -81,17 +72,25 @@ POWERLEVEL10K_MODE="nerdfont-complete"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 git
+sudo
 zsh-syntax-highlighting
 zsh-autosuggestions
-sudo
 )
-
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+export EDITOR='nvim'
+export VISUAL='nvim'
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# History settings
+HISTSIZE=10000
+SAVEHIST=10000
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -100,40 +99,75 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+papu() {
+  if [[ "$1" == "on" ]]; then
+    nmcli con up ConectatePapu
+  elif [[ "$1" == "off" ]]; then
+    nmcli con down ConectatePapu
+  else
+    echo "Uso: papu [on|off]"
+  fi
+}
+alias pn="pnpm"
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+alias cat='/bin/bat'
+alias catn='/bin/cat'
+alias gay='agy'
+alias icat='kitten icat'
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# Path
-export PATH=$PATH:/usr/local/go/bin
 source "$HOME/.cargo/env"
 
-alias mciplan="ngrok tcp --region sa 25565"
-alias pn="pnpm"
-alias changejava="sudo update-alternatives --config java"
-alias upkitty="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
-# bun completions
-[ -s "/home/pyrex64/.bun/_bun" ] && source "/home/pyrex64/.bun/_bun"
+# Turso
+export PATH="$PATH:$HOME/.turso"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# export PATH=$PATH:/usr/local/go/bin
+
+# Created by `pipx` on 2026-01-21 05:55:46
+# export PATH="$PATH:$HOME/.local/bin"
+
+# Spicetify
+export PATH="$HOME/.spicetify:$PATH"
+
+
+export PATH=$PATH:$HOME/.spicetify
+
+
+# Added by Antigravity CLI installer
+export PATH="$HOME/.local/bin:$PATH"
+
+# Android SDK Configuration
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+# Set VLC as the default player for ani-cli
+export ANI_CLI_PLAYER="vlc"
+

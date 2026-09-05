@@ -1,0 +1,12 @@
+eamodio.gitlens
+expo.vscode-expo-tools
+ms-azuretools.vscode-containers
+ms-vscode-remote.remote-containers
+redhat.java
+redhat.vscode-yaml
+vscjava.vscode-gradle
+vscjava.vscode-java-debug
+vscjava.vscode-java-dependency
+vscjava.vscode-java-pack
+vscjava.vscode-java-test
+vscjava.vscode-maven

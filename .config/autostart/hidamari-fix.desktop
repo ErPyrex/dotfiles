@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/pyrex64/.iniciar_hidamari.sh
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=true
+Name=Hidamari con Iconos
+Comment=Inicia Hidamari y arregla los iconos del escritorio
+X-GNOME-Autostart-Delay=3
+

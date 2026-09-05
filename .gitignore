@@ -1,0 +1,21 @@
+# Archivos temporales y de respaldo
+*.bak
+*.tmp
+*.swp
+*.swo
+*~
+.dotfiles_backup_*
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Claves privadas y credenciales por seguridad
+id_rsa
+id_ed25519
+*.pem
+*.key
+.env
+.env.*
+mcp-auth
+*.log

@@ -1,0 +1,20 @@
+[desktop]
+ignored-desktop-handlers=['conky', 'csd-background', 'hidamari', 'Hidamari']
+show-desktop-icons=true
+show-orphaned-desktop-icons=true
+
+[preferences]
+last-server-connect-method=3
+show-hidden-files=false
+
+[search]
+search-reverse-sort=false
+search-sort-column='name'
+
+[window-state]
+geometry='800x550+90+90'
+maximized=true
+side-pane-view='places'
+sidebar-bookmark-breakpoint=5
+sidebar-width=140
+start-with-sidebar=true
