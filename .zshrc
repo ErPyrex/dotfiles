@@ -118,13 +118,38 @@ setopt HIST_REDUCE_BLANKS
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 papu() {
-  if [[ "$1" == "on" ]]; then
-    nmcli con up ConectatePapu
-  elif [[ "$1" == "off" ]]; then
-    nmcli con down ConectatePapu
-  else
-    echo "Uso: papu [on|off]"
-  fi
+  case "$1" in
+    on)
+      echo "Iniciando punto de acceso..."
+      if [[ "$(nmcli radio wifi)" != "enabled" ]]; then
+        rfkill unblock wifi 2>/dev/null
+        nmcli radio wifi on
+        sleep 1.5
+      fi
+      if nmcli con up ConectatePapu; then
+        echo "Zona WiFi activada exitosamente."
+        echo "SSID:      Conectate Papu"
+        echo "Password:  ohsiquericopapu"
+      fi
+      ;;
+    off)
+      echo "Desactivando punto de acceso..."
+      nmcli con down ConectatePapu
+      ;;
+    status)
+      echo "--- Estado de la Zona WiFi ---"
+      if nmcli con show --active | grep -q "ConectatePapu"; then
+        echo "Estado: ACTIVO"
+        echo "Dispositivos conectados:"
+        ip neigh show dev wlp0s20f3 | grep REACHABLE || echo "  (Ninguno detectado por ahora)"
+      else
+        echo "Estado: INACTIVO"
+      fi
+      ;;
+    *)
+      echo "Uso: papu [on|off|status]"
+      ;;
+  esac
 }
 alias pn="pnpm"
 alias ls='lsd'
@@ -136,6 +161,7 @@ alias cat='/bin/bat'
 alias catn='/bin/cat'
 alias gay='agy'
 alias icat='kitten icat'
+alias counter='~/go/bin/countdown'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -148,7 +174,7 @@ source "$HOME/.cargo/env"
 # Turso
 export PATH="$PATH:$HOME/.turso"
 
-# export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin
 
 # Created by `pipx` on 2026-01-21 05:55:46
 # export PATH="$PATH:$HOME/.local/bin"
@@ -171,3 +197,20 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 # Set VLC as the default player for ani-cli
 export ANI_CLI_PLAYER="vlc"
 
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# opencode
+export PATH=$HOME/.opencode/bin:$PATH
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.config/vite-plus/env"

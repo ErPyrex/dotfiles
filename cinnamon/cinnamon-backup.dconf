@@ -1,10 +1,10 @@
 [/]
 desklet-snap-interval=25
-enabled-applets=['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:1:separator@cinnamon.org:1', 'panel1:left:2:grouped-window-list@cinnamon.org:2', 'panel1:right:7:systray@cinnamon.org:3', 'panel1:right:8:xapp-status@cinnamon.org:4', 'panel1:right:9:notifications@cinnamon.org:5', 'panel1:right:10:printers@cinnamon.org:6', 'panel1:right:11:removable-drives@cinnamon.org:7', 'panel1:right:12:keyboard@cinnamon.org:8', 'panel1:right:13:favorites@cinnamon.org:9', 'panel1:right:14:network@cinnamon.org:10', 'panel1:right:15:sound@cinnamon.org:11', 'panel1:right:16:power@cinnamon.org:12', 'panel1:right:17:calendar@cinnamon.org:13', 'panel1:right:18:cornerbar@cinnamon.org:14']
+enabled-applets=['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:1:separator@cinnamon.org:1', 'panel1:left:2:grouped-window-list@cinnamon.org:2', 'panel1:right:9:systray@cinnamon.org:3', 'panel1:right:10:xapp-status@cinnamon.org:4', 'panel1:right:11:notifications@cinnamon.org:5', 'panel1:right:12:printers@cinnamon.org:6', 'panel1:right:13:removable-drives@cinnamon.org:7', 'panel1:right:14:keyboard@cinnamon.org:8', 'panel1:right:15:favorites@cinnamon.org:9', 'panel1:right:16:network@cinnamon.org:10', 'panel1:right:17:sound@cinnamon.org:11', 'panel1:right:18:power@cinnamon.org:12', 'panel1:right:19:calendar@cinnamon.org:13', 'panel1:right:20:cornerbar@cinnamon.org:14']
 enabled-desklets=@as []
-enabled-extensions=['BlurCinnamon@klangman']
-next-applet-id=22
-next-desklet-id=6
+enabled-extensions=@as []
+next-applet-id=24
+next-desklet-id=10
 panel-edit-mode=false
 panel-zone-icon-sizes='[{"panelId":1,"left":0,"center":0,"right":24}]'
 panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
@@ -23,7 +23,8 @@ exec='/home/pyrex64/.local/kitty.app/bin/kitty'
 exec-arg='--'
 
 [desktop/background]
-picture-uri='file:///home/pyrex64/Im%C3%A1genes/wallhaven-6l23q7_1600x900.png'
+picture-options='zoom'
+picture-uri='file:///home/pyrex64/Im%C3%A1genes/wallpaperswide.com-anime-girl-with-red-eyes-in-cyberpunk-red-light-portrait-wallpaper-3840x2400.jpg'
 
 [desktop/background/slideshow]
 delay=15
@@ -104,6 +105,14 @@ numlock-state='off'
 
 [settings-daemon/plugins/color]
 night-light-last-coordinates=(10.5, -66.933333000000005)
+
+[settings-daemon/plugins/power]
+lid-close-ac-action='suspend'
+lid-close-battery-action='suspend'
+sleep-display-ac=1800
+sleep-display-battery=1800
+sleep-inactive-ac-timeout=0
+sleep-inactive-battery-timeout=0
 
 [theme]
 name='Orchis-Dark-Compact'
